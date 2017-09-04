@@ -1,0 +1,11 @@
+backports-abc==0.5
+certifi==2017.7.27.1
+ecdsa==0.13
+esptool==2.1
+pyaes==1.6.0
+pyserial==3.4
+RBTools==0.7.9
+singledispatch==3.4.0.3
+six==1.10.0
+tornado==4.5.2
+tqdm==4.11.0
