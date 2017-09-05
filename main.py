@@ -5,11 +5,15 @@ import tornado.web
 
 class TestHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("hello tornado")
+        print("get request")
+        self.write({"str": "hello tornado"})
 
     def post(self):
         body = self.request.body
-        self.write("echo:" + body)
+        print(body)
+        self.write({"echo:": body})
+
+
 def make_app():
     return tornado.web.Application([
         (r"/", TestHandler),
