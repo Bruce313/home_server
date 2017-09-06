@@ -1,17 +1,31 @@
-#!/usr/bin/python
-#coding:utf8
+#!/usr/local/bin/python
+# coding:utf8
 import tornado.ioloop
 import tornado.web
+import json
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client['home']
+
 
 class TestHandler(tornado.web.RequestHandler):
+    def __init__(self, application, request, **kwargs):
+        super(TestHandler, self).__init__(application, request, **kwargs)
+        self.tbl = db['events']
+
+    def data_received(self, chunk):
+        pass
+
     def get(self):
         print("get request")
         self.write({"str": "hello tornado"})
 
     def post(self):
-        body = self.request.body
-        print(body)
-        self.write({"echo:": body})
+        body = json.loads(self.request.body)
+        print(type(body))
+        self.tbl.insert_one(body)
+        self.write({"echo:": str(body)})
 
 
 def make_app():
