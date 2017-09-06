@@ -1,2 +1,2 @@
 #/usr/bin/bash
-mongod --dbpath ./data/db
+mongod --dbpath ~/data/db
